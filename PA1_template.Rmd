@@ -115,9 +115,7 @@ merged$weekend <- factor(merged$weekend,labels = c("weekend", "weekday"))
 ```
 
 
-1. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
-
-![Sample panel plot](instructions_fig/sample_panelplot.png) 
+1. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
 ```{r}
 intervalwk <- merged %>% group_by(weekend, interval) %>% summarise(mean(steps))
@@ -125,12 +123,6 @@ names(intervalwk)[3] <- 'steps'
 ggplot(intervalwk, aes(x = interval, y = steps)) + geom_line() + facet_grid(weekend~.)
 
 ```
-
-
-**Your plot will look different from the one above** because you will
-be using the activity monitor data. Note that the above plot was made
-using the lattice system but you can make the same version of the plot
-using any plotting system you choose.
 
 
 ## Submitting the Assignment
