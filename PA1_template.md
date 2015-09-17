@@ -1,10 +1,10 @@
 ---
 title: "PA1_template.Rmd"
 author: "KGW"
-date: "June 18, 2015"
+date: "September 16, 2015"
 output: html_document
 ---
-
+(Instructions from the assignment are in italics)
 ### Loading and preprocessing
 
 First, we open the data file and drop the NAs
@@ -80,7 +80,7 @@ print(paste("The interval with the highest average number of steps is: ",
 
 ### Imputing missing values
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with `NA`s)
+1. _Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with `NA`s)_
 
 
 ```r
@@ -94,7 +94,9 @@ print(paste("The number of missing rows is:", narows))
 ```
 
 
-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc. (I chose to go wtih the mean for that interval since it was right there.  But to keep things tidy, I made it
+2. _Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc._
+
+(I chose to go wtih the mean for that interval since it was right there.  But to keep things tidy, I made it
 look like an integer)
 
 
@@ -104,13 +106,13 @@ nas$steps <- round(nas$avg_steps, 0)
 ```
 
 
-3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+3. _Create a new dataset that is equal to the original dataset but with the missing data filled in._
 
 ```r
 merged <- bind_rows(complete, nas)
 ```
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+4. _Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?_
 
 
 ```r
@@ -162,10 +164,7 @@ rm(rptdaytotals)
 
 ### Are there differences in activity patterns between weekdays and weekends?
 
-For this part the `weekdays()` function may be of some help here. Use
-the dataset with the filled-in missing values for this part.
-
-1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+_1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day._
 
 
 ```r
@@ -175,9 +174,7 @@ merged$weekend <- factor(merged$weekend,labels = c("weekend", "weekday"))
 ```
 
 
-1. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
-
-![Sample panel plot](instructions_fig/sample_panelplot.png) 
+_2. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)._
 
 
 ```r
@@ -188,41 +185,3 @@ ggplot(intervalwk, aes(x = interval, y = steps)) + geom_line() + facet_grid(week
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
-
-**Your plot will look different from the one above** because you will
-be using the activity monitor data. Note that the above plot was made
-using the lattice system but you can make the same version of the plot
-using any plotting system you choose.
-
-
-## Submitting the Assignment
-
-To submit the assignment:
-
-1. Commit your completed `PA1_template.Rmd` file to the `master` branch of your git repository (you should already be on the `master` branch unless you created new ones)
-
-2. Commit your `PA1_template.md` and `PA1_template.html` files produced by processing your R markdown file with the `knit2html()` function in R (from the **knitr** package)
-
-3. If your document has figures included (it should) then they should have been placed in the `figure/` directory by default (unless you overrode the default). Add and commit the `figure/` directory to your git repository.
-
-4. Push your `master` branch to GitHub.
-
-5. Submit the URL to your GitHub repository for this assignment on the course web site.
-
-In addition to submitting the URL for your GitHub repository, you will
-need to submit the 40 character SHA-1 hash (as string of numbers from
-0-9 and letters from a-f) that identifies the repository commit that
-contains the version of the files you want to submit. You can do this
-in GitHub by doing the following:
-
-1. Go into your GitHub repository web page for this assignment
-
-2. Click on the "?? commits" link where ?? is the number of commits you have in the repository. For example, if you made a total of 10 commits to this repository, the link should say "10 commits".
-
-3. You will see a list of commits that you have made to this repository. The most recent commit is at the very top. If this represents the version of the files you want to submit, then just click the "copy to clipboard" button on the right hand side that should appear when you hover over the SHA-1 hash. Paste this SHA-1 hash into the course web site when you submit your assignment. If you don't want to use the most recent commit, then go down and find the commit you want and copy the SHA-1 hash.
-
-A valid submission will look something like (this is just an **example**!)
-
-https://github.com/rdpeng/RepData_PeerAssessment1
-
-7c376cc5447f11537f8740af8e07d6facc3d9645
